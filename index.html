@@ -61,9 +61,9 @@ button:hover{
 }
 
 #resultado{
-    margin-top:25px;
+    margin-top:20px;
     font-size:18px;
-    line-height:1.8;
+    line-height:1.6;
     text-align:left;
 }
 
@@ -83,6 +83,7 @@ type="number"
 id="peso"
 step="0.1"
 min="0.5"
+max="16"
 placeholder="Ejemplo: 5">
 
 <button onclick="calcular()">
@@ -99,10 +100,10 @@ function calcular(){
 
     let peso = parseFloat(document.getElementById("peso").value);
 
-    if(isNaN(peso) || peso <= 0){
+    if(isNaN(peso) || peso < 0.5 || peso > 16){
 
         document.getElementById("resultado").innerHTML =
-        "⚠️ Ingrese un peso válido.";
+        "⚠️ Ingrese un peso entre 0.5 y 16 kg.";
 
         return;
     }
@@ -114,24 +115,21 @@ function calcular(){
     let dias15kg = 15000 / gramos;
 
     document.getElementById("resultado").innerHTML =
-        "<strong>Resultado:</strong><br><br>" +
+        "<strong>Resultado</strong><br>" +
 
         "🐾 Peso: <strong>" +
         peso.toFixed(1) +
-        " kg</strong><br><br>" +
+        " kg</strong><br>" +
 
-        "🍖 Cantidad diaria recomendada:<br>" +
-        "<strong>" +
+        "🍖 Cantidad diaria: <strong>" +
         gramos.toFixed(0) +
-        " g/día</strong><br><br>" +
+        " g/día</strong><br>" +
 
-        "📦 Una funda de 3 kg dura aproximadamente:<br>" +
-        "<strong>" +
+        "📦 Funda de 3 kg: <strong>" +
         dias3kg.toFixed(0) +
-        " días</strong><br><br>" +
+        " días</strong><br>" +
 
-        "📦 Una funda de 15 kg dura aproximadamente:<br>" +
-        "<strong>" +
+        "📦 Funda de 15 kg: <strong>" +
         dias15kg.toFixed(0) +
         " días</strong>";
 }
